@@ -1,0 +1,48 @@
+{
+  "name": "lynk",
+  "version": "0.1.0",
+  "description": "Lynk is a production-focused desktop web browser built with Electron, React, Tailwind CSS, and SQLite.",
+  "main": "./out/main/index.js",
+  "author": "Dhruva Abisht",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.20.0"
+  },
+  "scripts": {
+    "dev": "node ./scripts/install-app-deps.cjs && electron-vite dev",
+    "start": "node ./scripts/install-app-deps.cjs && electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json --composite false && tsc --noEmit -p tsconfig.web.json --composite false",
+    "build": "node ./scripts/ensure-native-deps.cjs && pnpm typecheck && electron-vite build",
+    "build:dir": "pnpm build && electron-builder --dir",
+    "build:mac": "pnpm build && electron-builder --mac dmg zip --arm64 --x64",
+    "postinstall": "node ./scripts/install-app-deps.cjs"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.9.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.19.1",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.4.21",
+    "electron": "^41.2.0",
+    "electron-builder": "25.1.8",
+    "electron-vite": "3.1.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "3.4.19",
+    "typescript": "^5.9.3",
+    "vite": "5.4.21"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "esbuild"
+    ]
+  },
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
+}

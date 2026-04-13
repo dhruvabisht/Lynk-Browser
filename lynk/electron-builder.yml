@@ -1,0 +1,38 @@
+appId: com.lynk.browser
+productName: Lynk
+directories:
+  buildResources: build
+files:
+  - out/**
+  - package.json
+extraResources:
+  - from: resources
+    to: resources
+asarUnpack:
+  - '**/*.node'
+  - resources/**
+mac:
+  category: public.app-category.utilities
+  executableName: Lynk
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  target:
+    - target: dmg
+      arch:
+        - arm64
+        - x64
+    - target: zip
+      arch:
+        - arm64
+        - x64
+  extendInfo:
+    NSCameraUsageDescription: Lynk can request camera access for websites that need it.
+    NSMicrophoneUsageDescription: Lynk can request microphone access for websites that need it.
+    NSDownloadsFolderUsageDescription: Lynk can access your Downloads folder for browser downloads.
+    NSDocumentsFolderUsageDescription: Lynk can access your Documents folder for file uploads and downloads.
+dmg:
+  artifactName: Lynk-${version}-${arch}.${ext}
+artifactName: Lynk-${version}-${os}-${arch}.${ext}
+npmRebuild: false
